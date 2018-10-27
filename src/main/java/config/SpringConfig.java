@@ -41,7 +41,7 @@ public class SpringConfig {
         entityManager.setPackagesToScan("entity");
         
         Properties jpaProperties=new Properties();
-        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         entityManager.setJpaProperties(jpaProperties);
         return entityManager;
