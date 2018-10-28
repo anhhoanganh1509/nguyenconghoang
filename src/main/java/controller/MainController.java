@@ -57,7 +57,7 @@ public class MainController {
     	    		count++;
     	    		if(count == questions.size()-1) {
     	    			int countPage = Integer.parseInt(link.attr("href").split("=")[1]);
-    	            	for(int i=1; i<=countPage; i++) {
+    	            	for(int i=1; i<=1; i++) {
     	            		Document docPage=Jsoup.connect(linkViblo+"?page="+i).timeout(5000).get();
     	            		Elements questionsPage = docPage.select("div[class=post-title--inline]").select("h3[class=word-break mr-05]").select("a[href]");
     	            		for (Element linkPage : questionsPage) {
