@@ -1,7 +1,5 @@
 package entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,89 +8,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "employee")
-public class CrawlEntity implements Serializable {
-private static final long serialVersionUID = -1000119078147252957L;
-    
+@Table(name="Crawl")
+public class CrawlEntity {
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CrawlID")
+    private int CrawlID;
+    
+    @Column(name = "CrawlURL")
+    private String CrawlURL;
 
-	@Column(name = "fullName")
-	private String fullName;
-
-	@Column(name = "address")
-	private String address;
-
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "phone")
-	private String phone;
-	
-	@Column(name = "salary")
-	private int salary;
-	
 	public CrawlEntity() {
-		
 	}
 
-	public CrawlEntity(int id, String fullName, String address, String email, String phone, int salary) {	
-		this.id = id;
-		this.fullName = fullName;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
-		this.salary = salary;
+	public CrawlEntity(int crawlID, String crawlURL) {
+		CrawlID = crawlID;
+		CrawlURL = crawlURL;
 	}
 
-	public int getId() {
-		return id;
+	public int getCrawlID() {
+		return CrawlID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCrawlID(int crawlID) {
+		CrawlID = crawlID;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getCrawlURL() {
+		return CrawlURL;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setCrawlURL(String crawlURL) {
+		CrawlURL = crawlURL;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public int getSalary() {
-		return salary;
-	}
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-	
+    
 }
