@@ -1,5 +1,7 @@
 package config;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -17,12 +19,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class SpringConfig {
     @Bean
-    DataSource dataSource(){
+    DataSource dataSource() throws URISyntaxException{
+    	URI dbUri = new URI(System.getenv("DATABASE_URL"));
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    	
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/crawler");        
-        dataSource.setUsername("root");        
-        dataSource.setPassword("Hoang123@");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(dbUrl);        
+        dataSource.setUsername(username);        
+        dataSource.setPassword(password);
         return  dataSource;
     }
     @Bean
@@ -33,7 +40,7 @@ public class SpringConfig {
         entityManager.setPackagesToScan("entity");
         
         Properties jpaProperties=new Properties();
-        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         entityManager.setJpaProperties(jpaProperties);
         return entityManager;
