@@ -6,10 +6,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/crawler" />
-		<property name="username" value="root" />
-		<property name="password" value="Hoang123@" />
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://ec2-54-221-225-11.compute-1.amazonaws.com:5432/d7cd4f5dc6f04n" />
+		<property name="username" value="qktuoyatxjqdgj" />
+		<property name="password" value="a163123f8c41fb0d55e93e6323e2278ad027c0740972bda8a439b84c0a5dca9f" />
 	</bean>
 
 </beans>
